@@ -1,4 +1,5 @@
 from django.db import models
+import datetime as dt
 
 class Editor(models.Model):
     first_name = models.CharField(max_length =30)
@@ -23,4 +24,15 @@ class Article(models.Model):
     editor = models.ForeignKey(Editor)
     tags = models.ManyToManyField(tags)
     pub_date = models.DateTimeField(auto_now_add=True)
+
+    @classmethod
+    def todays_image(cls):
+        today = dt.date.today()
+        image = cls.objects.filter(pub_date__date = today)
+        return image
+
+    @classmethod
+    def days_image(cls,date):
+        image = cls.objects.filter(pub_date__date = date)
+        return image
 
