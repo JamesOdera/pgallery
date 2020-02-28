@@ -24,6 +24,7 @@ class Article(models.Model):
     editor = models.ForeignKey(Editor)
     tags = models.ManyToManyField(tags)
     pub_date = models.DateTimeField(auto_now_add=True)
+    article_image = models.ImageField(upload_to = 'articles/')
 
     @classmethod
     def todays_image(cls):
@@ -35,4 +36,10 @@ class Article(models.Model):
     def days_image(cls,date):
         image = cls.objects.filter(pub_date__date = date)
         return image
+
+    @classmethod
+    def search_by_title(cls,search_term):
+        image = cls.objects.filter(title__icontains=search_term)
+        return image
+
 
