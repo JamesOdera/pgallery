@@ -1,14 +1,16 @@
 from django.shortcuts import render,redirect
 from django.http  import HttpResponse
 import datetime as dt
+from .models import Article
 
 # Create your views here.
 def gallery(request):
     return render(request, 'gallery.html')
 
-def image_of_day(request):
+def image_today(request):
     date = dt.date.today()
-    return render(request, 'images/today-image.html', {"date": date,})
+    image = Article.todays_image()
+    return render(request, 'images/today-image.html', {"date": date, "image": image})
 
     # FUNCTION TO CONVERT DATE OBJECT TO FIND EXACT DAY
     day = convert_dates(date)
@@ -44,6 +46,7 @@ def past_days_image(request, past_date):
         assert False
 
     if date == dt.date.today():
-        return redirect(news_of_day)
+        return redirect(news_today)
 
-    return render(request, 'images/past-image.html', {"date": date})
+    image = Article.days_image(date)
+    return render(request, 'images/past-image.html', {"date": date, "image": image})
