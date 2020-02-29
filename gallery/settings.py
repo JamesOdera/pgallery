@@ -27,6 +27,8 @@ SECRET_KEY = '^t0=8dm+1t%onfutg3(ek(ax8@=sr76v)4_#v(o0%_2utip-a6'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
+ALLOWED_HOSTS = '.localhost', '.herokuapp.com', '.127.0.0.1'
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -99,10 +101,6 @@ else:
            default=config('DATABASE_URL')
        )
    }
-
-
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
