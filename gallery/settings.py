@@ -27,8 +27,6 @@ SECRET_KEY = 'u=ck5&a4ib2pgwvgwubne06gai(&&cr$-vzfqry^zr5hryy%z*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -101,6 +99,9 @@ else:
            default=config('DATABASE_URL')
        )
    }
+
+
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
 
 # Password validation
