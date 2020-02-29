@@ -27,7 +27,7 @@ SECRET_KEY = '^t0=8dm+1t%onfutg3(ek(ax8@=sr76v)4_#v(o0%_2utip-a6'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-ALLOWED_HOSTS = '.localhost', '.herokuapp.com', '.127.0.0.1'
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
 # Application definition
 
@@ -72,13 +72,14 @@ TEMPLATES = [
     },
 ]
 
+
 WSGI_APPLICATION = 'gallery.wsgi.application'
 
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
-MODE=config("MODE", default="prod")
+MODE=config("MODE", default="dev")
 SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', default=True, cast=bool)
 # development
