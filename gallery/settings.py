@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'gallery.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
-MODE=config("MODE", default="dev")
+MODE=config("MODE", default="prod")
 SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', default=True, cast=bool)
 # development
