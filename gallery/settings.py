@@ -27,9 +27,6 @@ SECRET_KEY = 'u=ck5&a4ib2pgwvgwubne06gai(&&cr$-vzfqry^zr5hryy%z*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
-
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -103,6 +100,11 @@ else:
        )
    }
 
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
+
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
+
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
@@ -154,6 +156,3 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Configure Django App for Heroku.
 
 django_heroku.settings(locals())
-
-db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(db_from_env)
