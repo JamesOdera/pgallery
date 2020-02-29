@@ -46,7 +46,7 @@ def past_days_image(request, past_date):
         assert False
 
     if date == dt.date.today():
-        return redirect(news_today)
+        return redirect(image_today)
 
     image = Article.days_image(date)
     return render(request, 'images/past-image.html', {"date": date, "image": image})
@@ -69,4 +69,4 @@ def article(request,article_id):
         article = Article.objects.get(id = article_id)
     except DoesNotExist:
         raise Http404()
-    return render(request,"all-news/article.html", {"article":article})
+    return render(request,"images/article.html", {"article":article})
